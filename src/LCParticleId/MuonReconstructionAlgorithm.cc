@@ -413,7 +413,7 @@ StatusCode MuonReconstructionAlgorithm::AssociateMuonTracks(const ClusterList *c
                     pBestTrack = pTrack;
                     bestTrackClusterChi2 = reducedTrackClusterChi2;
                     bestTrackEnergy = pTrack->GetEnergyAtDca();
-                    std::cout << "Match! Theta = " << theta << std::endl;
+                    //std::cout << "Match! Theta = " << theta << std::endl;
                 }
             }
 
@@ -589,12 +589,12 @@ bool MuonReconstructionAlgorithm::PassTrackClusterCuts(const float &clusterFitCh
         maxRedTrackClusterChi2 = m_maxRedTrackClusterChi2Trn;
     }
 
-    if (trackClusterChi2 < 300. && clusterFitChi2 < 300.)
+    /*if (trackClusterChi2 < 300. && clusterFitChi2 < 300.)
     {
         std::cout << "Chi2 cluster = " << clusterFitChi2 << " / " << m_maxClusterFitChi2 << std::endl;
         std::cout << "Chi2 trk-clus = " << trackClusterChi2 << " / " << maxRedTrackClusterChi2 << std::endl;
         std::cout << "Th = " << trkTheta << "     Dist = " << trackClusterD << std::endl;
-    }
+    }*/
 
     if (clusterFitChi2 > m_maxClusterFitChi2)
         return false;
