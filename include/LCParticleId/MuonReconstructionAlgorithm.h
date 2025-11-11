@@ -65,6 +65,26 @@ private:
     const pandora::CartesianVector getCentroidInMuonYoke(const pandora::Cluster *const pCluster) const;
 
     /**
+     *  @brief  Get the reduced chi2 between track helix and cluster hits
+     *
+     *  @param  pCluster is the candidate muon cluster
+     *  @param  helix is the track helix
+     */
+
+    float GetChi2OfTrackClusterFit(const pandora::Cluster *const pCluster, const pandora::Helix &helix) const;
+
+    /**
+     *  @brief  Compact way of performing quality cuts on track-cluster muon candidates
+     *
+     *  @param  clusterFitChi2 is chi2 of cluster fit
+     *  @param  trackClusterChi2 is reduced chi2 between track and cluster
+     *  @param  trackClusterD is DOCA between track and cluster's innermost hit
+     *  @param  trkTheta is track's polar angle at vertex
+     */
+
+    bool PassTrackClusterCuts(const float &clusterFitChi2, const float &trackClusterChi2, const float &trackClusterD, float &trkTheta) const;
+
+    /**
      *  @brief  Add appropriate calo hits in the ecal/hcal to the muon clusters
      * 
      *  @param  pMuonClusterList address of the muon cluster list
@@ -152,6 +172,12 @@ private:
     float           m_maxHitsOverLayersFwd;         ///< Max Hits/Layers FWD
     float           m_maxDistanceToTrackFwd;        ///< Max track-cluster distance FWD
     float           m_maxDistanceToTrackTrn;        ///< Max track-cluster distance TRANSITION
+    float           m_maxRedTrackClusterChi2;       ///< Max reduced track-cluster chi2
+    float           m_maxRedTrackClusterChi2Fwd;    ///< Max reduced track-cluster chi2 FWD
+    float           m_maxRedTrackClusterChi2Trn;    ///< Max reduced track-cluster chi2 TRANSITION
+    float           m_maxRedTrkCluChi2Direct;       ///< Max reduced track-cluster chi2 for direct cut pass
+    float           m_maxTrkCluDistanceDirect;      ///< Max track-cluster distance for direct cut pass
+    float           m_maxRedTrackClusterChi2Close;  ///< Max reduced track-cluster chi2 for direct track-cluster distance pass
 
     bool            m_associateCaloHits;            ///< Whether to associate calo hits to muon pfo
 };
